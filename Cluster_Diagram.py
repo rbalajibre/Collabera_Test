@@ -9,15 +9,15 @@ with Diagram("Clustered Web Services", show=False):
     lb = ELB("lb")
 
     with Cluster("Services"):
-        svc_group = [ECS("web1"),
-                     ECS("web2"),
-                     ECS("web3")]
+        svc_group = [ECS("webServ1"),
+                     ECS("webServ2"),
+                     ECS("webServ3")]
 
     with Cluster("DB Cluster"):
-        db_primary = RDS("userdb")
-        db_primary - [RDS("userdb ro")]
+        db_primary = RDS("database")
+        db_primary - [RDS("database ro")]
 
-    memcached = ElastiCache("memcached")
+    memcached = ElastiCache("cached Memory")
 
     dns >> lb >> svc_group
     svc_group >> db_primary
