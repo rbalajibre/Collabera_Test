@@ -17,8 +17,8 @@ with Diagram("Clustered Web Services", show=False):
         db_primary = RDS("database")
         db_primary - [RDS("database ro")]
 
-    memcached = ElastiCache("cached Memory")
+    cachedMemory = ElastiCache("cachedMemory")
 
     dns >> lb >> svc_group
     svc_group >> db_primary
-    svc_group >> memcached
+    svc_group >> cachedMemory
